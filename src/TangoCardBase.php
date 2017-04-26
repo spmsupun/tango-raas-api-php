@@ -46,8 +46,8 @@ class TangoCardBase {
      *
      */
     protected static $_appModes = array(
-        'sandbox' => 'https://sandbox.tangocard.com/raas',
-        'production' => 'https://integration-api.tangocard.com/raas'
+        'sandbox' => 'https://integration-api.tangocard.com/raas',
+        'production' => 'https://api.tangocard.com/raas'
         );
     /**
      * @staticvar array $_resources contains available tangocard api's url
