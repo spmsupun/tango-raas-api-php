@@ -1,23 +1,23 @@
 <?php
-namespace Integrateideas\TangoRaasApi;
+namespace Integrateideas;
 
 class TangoCardResponse {
 
-  private $_status = null;
+  public $status = null;
 
-  private $_data = null;
+  public $data = null;
 
   public function __construct($status = true, $data) {
-    $this->_status = $status;
-    $this->_data = json_decode($data);
+    $this->status = $status;
+    $this->data = json_decode($data);
   }
 
   public function getStatus(){
-   return $this->_status;
+   return $this->status;
   }
 
   public function getData(){
-   return $this->_data;
+   return $this->data;
   }
 }
 ?>

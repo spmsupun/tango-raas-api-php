@@ -1,7 +1,7 @@
 ### Tango Rewards as a Service API for PHP
 
 
-TangoCard RAAS PHP SDK
+TangoCard RAAS PHP SDK for RAAS api v2
 
 Refer to Tango Raas API for actual response and requests. https://integration-www.tangocard.com/raas_api_console/v2/
 
