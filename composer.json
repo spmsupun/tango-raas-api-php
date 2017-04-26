@@ -4,7 +4,13 @@
     "keywords": ["tangocard", "sdk"],
     "type": "library",
     "homepage": "https://github.com/integrateideas/tango-raas-api-php",
-    "license": "Apache2",
+    "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/integrateideas/tango-raas-api-php"
+        } 
+    ],
     "authors": [
         {
             "name": "Twinspark",
