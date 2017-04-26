@@ -1,5 +1,5 @@
 <?php
-namespace Integrateideas;
+namespace Integrateideas\TangoRaasApi;
 
 class TangoCardResponse {
 
