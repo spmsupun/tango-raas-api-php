@@ -1,5 +1,5 @@
 {
-    "name": "integrateideas/tangocard",
+    "name": "integrateideas/tango-raas-api-php",
     "description": "TangoCard RAAS PHP SDK",
     "keywords": ["tangocard", "sdk"],
     "type": "library",
