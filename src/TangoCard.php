@@ -351,7 +351,7 @@ class TangoCard extends TangoCardBase {
      *
      * @return array details of allocated fund
      */
-    public function fundCreditCard($customerIdentifier,$accountIdentifier,$creditCardToken,$amount) {
+    public function fundAccount($customerIdentifier,$accountIdentifier,$creditCardToken,$amount) {
         $data =[
         'accountIdentifier'=>$accountIdentifier,
         'customerIdentifier'=>$customerIdentifier,
