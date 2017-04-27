@@ -1,4 +1,4 @@
-### Tango Rewards as a Service API for PHP
+### Tango Rewards as a Service v2 API for PHP 
 
 
 TangoCard RAAS PHP SDK for RAAS api v2
@@ -22,6 +22,14 @@ All Raas api calls return a stdObject with two properties: status and data
 The data property contains the response from the RaaS API as an stdObject.
 
 Response Structure:
+Integrateideas\TangoRaasApi\TangoCardResponse Object
+(
+    [status] => //contain status of request : true if api response is 2x else false
+    [data] => stdClass Object
+        (
+        	//contains requested data
+        )
+)
 
 1) Get a list of all Customers
 		
