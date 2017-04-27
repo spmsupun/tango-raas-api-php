@@ -22,15 +22,16 @@ All Raas api calls return a stdObject with two properties: status and data
 The data property contains the response from the RaaS API as an stdObject.
 
 Response Structure:
+~~~~
 Integrateideas\TangoRaasApi\TangoCardResponse Object
 (
-    [status] => //contain status of request : true if api response is 2x else false
+    [status] => //contains status of the request : True if api response is 2x else false
     [data] => stdClass Object
         (
         	//contains requested data
         )
 )
-
+~~~~
 1) Get a list of all Customers
 		
 		$tangoCard->getCustomers();
