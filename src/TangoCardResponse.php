@@ -1,23 +1,50 @@
 <?php
+
 namespace Integrateideas\TangoRaasApi;
 
-class TangoCardResponse {
+/**
+ * Class TangoCardResponse
+ * @package Integrateideas\TangoRaasApi
+ */
+class TangoCardResponse
+{
 
-  public $status = null;
+    /**
+     * @var bool|null
+     */
+    public $status = null;
 
-  public $data = null;
+    /**
+     * @var mixed|null
+     */
+    public $data = null;
 
-  public function __construct($status = true, $data) {
-    $this->status = $status;
-    $this->data = json_decode($data);
-  }
+    /**
+     * TangoCardResponse constructor.
+     * @param bool $status
+     * @param mixed $data
+     */
+    public function __construct(bool $status, mixed $data)
+    {
+        $this->status = $status;
+        $this->data = json_decode($data);
+    }
 
-  public function getStatus(){
-   return $this->status;
-  }
+    /**
+     * @return bool|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
-  public function getData(){
-   return $this->data;
-  }
+    /**
+     * @return mixed|null
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
 }
+
 ?>
