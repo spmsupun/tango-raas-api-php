@@ -1,5 +1,8 @@
 <?php
+
 namespace Integrateideas\TangoRaasApi;
+
+use Exception;
 
 /**
  *    The MIT License (MIT)
@@ -24,7 +27,8 @@ namespace Integrateideas\TangoRaasApi;
  *
  * @author nitesh srivastava <nitesh.srivastava@twinspark.co>
  */
-class TangoCardNetworkException extends \Exception {
+class TangoCardNetworkException extends Exception
+{
 
 
 }

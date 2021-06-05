@@ -1,7 +1,7 @@
 <?php
+
 namespace Integrateideas\TangoRaasApi;
 
-use Integrateideas\TangoRaasApi\TangoCardResponse;
 /**
  *    The MIT License (MIT)
  *
@@ -19,7 +19,8 @@ use Integrateideas\TangoRaasApi\TangoCardResponse;
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-class TangoCardBase {
+class TangoCardBase
+{
 
     /**
      * Version.
@@ -37,8 +38,8 @@ class TangoCardBase {
         CURLOPT_TIMEOUT => 60,
         CURLOPT_USERAGENT => 'tango-raas-php-2.0',
         CURLOPT_SSL_VERIFYPEER => true,
-        CURLOPT_RETURNTRANSFER => TRUE
-        );
+        CURLOPT_RETURNTRANSFER => true
+    );
 
 
     /**
@@ -48,96 +49,100 @@ class TangoCardBase {
     protected static $_appModes = array(
         'sandbox' => 'https://integration-api.tangocard.com/raas',
         'production' => 'https://api.tangocard.com/raas'
-        );
+    );
     /**
      * @staticvar array $_resources contains available tangocard api's url
      *
      */
     private static $_resources = [
 
-    'get'=>[
-    'customers'=>['accounts'],
-    'accounts' => [],
-    'creditCards'=>[],
-    'catalogs'=>[],
-    'orders'=>['resends']
-    ],
+        'get' => [
+            'customers' => ['accounts'],
+            'accounts' => [],
+            'creditCards' => [],
+            'catalogs' => [],
+            'orders' => ['resends']
+        ],
 
-    'post'=>[
-    'customers'=>['accounts'],
-    'accounts' => [],
-    'creditCards'=>[],
-    'creditCardDeposits'=>[],
-    'creditCardUnregisters'=>[],
-    'catalogs'=>[],
-    'orders'=>['resends']
-    ]
+        'post' => [
+            'customers' => ['accounts'],
+            'accounts' => [],
+            'creditCards' => [],
+            'creditCardDeposits' => [],
+            'creditCardUnregisters' => [],
+            'catalogs' => [],
+            'orders' => ['resends']
+        ]
 
     ];
 
-/*
-     * This method is used to validated resource and subresource to create end point
-     *
-     */
-protected function _validateResourceAndSubResource($httpMethod,$resource,$subResource){
-    if(!empty($resource) && !array_key_exists($resource, self::$_resources[$httpMethod])){
-        throw new Exception(__("Resource Name is missing or mispelled. The available options are ".implode(", ", array_keys(self::$_resources[$httpMethod]))));
+    /*
+         * This method is used to validated resource and subresource to create end point
+         *
+         */
+    protected function _validateResourceAndSubResource($httpMethod, $resource, $subResource)
+    {
+        if (!empty($resource) && !array_key_exists($resource, self::$_resources[$httpMethod])) {
+            throw new Exception(__("Resource Name is missing or mispelled. The available options are " . implode(", ",
+                    array_keys(self::$_resources[$httpMethod]))));
+        }
+        if (!empty($subResource) && !in_array($subResource, self::$_resources[$httpMethod][$resource])) {
+            throw new Exception(__("Incorrect Subresource provided or mispelled. The available options for " . $resource . " are " . implode(", ",
+                    self::$_resources[$httpMethod][$resource])));
+        }
     }
-    if (!empty($subResource) && !in_array($subResource, self::$_resources[$httpMethod][$resource])) {
-        throw new Exception(__("Incorrect Subresource provided or mispelled. The available options for ".$resource." are ".implode(", ", self::$_resources[$httpMethod][$resource])));
-    }
-}
 
     /*
      * This method is used to validated feature request
      *
      */
 
-    protected function _validateInfo($httpMethod,$resource,$subResource=false){
-        if(array_key_exists($httpMethod, self::$_resources)){
-            self::_validateResourceAndSubResource($httpMethod,$resource,$subResource);
-        }else{
-          throw new TangoCardRequestTypeInvalidException();
-      }
-
-  }
+    protected function _validateInfo($httpMethod, $resource, $subResource = false)
+    {
+        if (array_key_exists($httpMethod, self::$_resources)) {
+            self::_validateResourceAndSubResource($httpMethod, $resource, $subResource);
+        } else {
+            throw new TangoCardRequestTypeInvalidException();
+        }
+    }
 
     /*
      * This method is used to create end point for request
      *
      */
 
-    protected function _createUrl($resource, $resourceId = false, $subResource=false)
+    protected function _createUrl($resource, $resourceId = false, $subResource = false)
     {
         $tangoCardApiUrl = self::$_appModes[$this->appMode];
-        if($subResource){
-            if(!$resourceId){
-               throw new TangoCardRequestTypeInvalidException();
-           }
-           $requestEndpoint =   $resource."/".$resourceId."/".$subResource ;
-       }else{
-        $requestEndpoint =   (($resourceId) ? $resource."/".$resourceId  : $resource);
+        if ($subResource) {
+            if (!$resourceId) {
+                throw new TangoCardRequestTypeInvalidException();
+            }
+            $requestEndpoint = $resource . "/" . $resourceId . "/" . $subResource;
+        } else {
+            $requestEndpoint = (($resourceId) ? $resource . "/" . $resourceId : $resource);
+        }
+        return $tangoCardApiUrl . "/" . $this->tangoCardApiVersion . "/" . $requestEndpoint;
     }
-    return $tangoCardApiUrl . "/" . $this->tangoCardApiVersion . "/" . $requestEndpoint;
-}
 
     /*
      * This method is used to verify request data
      *
      */
 
-    protected function _requestData($httpMethod,$resource, $resourceId = false, $subResource = false, $data=false)
+    protected function _requestData($httpMethod, $resource, $resourceId = false, $subResource = false, $data = false)
     {
-        self::_validateInfo($httpMethod,$resource,$subResource);
+        self::_validateInfo($httpMethod, $resource, $subResource);
         $url = self::_createUrl($resource, $resourceId, $subResource);
-        if(strtolower($httpMethod) == 'get'){
+        if (strtolower($httpMethod) == 'get') {
             return self::tangoCardRequest($url);
-        }else if(strtolower($httpMethod) == 'post'){
-            return self::tangoCardRequest($url, $data, TRUE);
-        }else{
-            throw new TangoCardRequestTypeInvalidException();
+        } else {
+            if (strtolower($httpMethod) == 'post') {
+                return self::tangoCardRequest($url, $data, true);
+            } else {
+                throw new TangoCardRequestTypeInvalidException();
+            }
         }
-
     }
 
 
@@ -146,7 +151,8 @@ protected function _validateResourceAndSubResource($httpMethod,$resource,$subRes
      *
      * @var array
      */
-    protected function tangoCardRequest($requestUrl, $params = False, $isPost = FALSE) {
+    protected function tangoCardRequest($requestUrl, $params = false, $isPost = false)
+    {
         $ch = curl_init();
         $opts = self::$CURL_OPTS;
         curl_setopt_array($ch, $opts);
@@ -158,7 +164,7 @@ protected function _validateResourceAndSubResource($httpMethod,$resource,$subRes
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
             'Authorization:Basic ' . base64_encode($this->platformName . ':' . $this->platformKey)
-            ));
+        ));
         $result = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $error = curl_error($ch);
@@ -168,9 +174,9 @@ protected function _validateResourceAndSubResource($httpMethod,$resource,$subRes
         }
         curl_close($ch);
 
-        if($httpStatus == 200 || $httpStatus == 201){
+        if ($httpStatus == 200 || $httpStatus == 201) {
             $result = new TangoCardResponse(true, $result);
-        }else{
+        } else {
             $result = new TangoCardResponse(false, $result);
         }
         return $result;
