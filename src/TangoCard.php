@@ -2,8 +2,6 @@
 
 namespace Integrateideas\TangoRaasApi;
 
-use Integrateideas\TangoRaasApi\TangoCardBase;
-
 /**
  *    The MIT License (MIT)
  *
@@ -477,22 +475,22 @@ class TangoCard extends TangoCardBase
      * @throws TangoCardRequestTypeInvalidException
      */
     final public function placeOrder(
-        $customerIdentifier,
+        string $customerIdentifier,
         string $accountIdentifier,
-        string $amount,
+        int $amount,
         string $utid,
-        string $sendEmail,
-        string $recipientEmail,
-        $recipientFirstName,
-        $recipientLastName = null,
-        $campaign = null,
-        $emailSubject = null,
-        $message = null,
-        $notes = null,
-        $senderEmail = null,
-        $senderFirstName = null,
-        $senderLastName = null,
-        $externalRefID = null
+        bool $sendEmail,
+        string $recipientEmail = "",
+        string $recipientFirstName = "",
+        string $recipientLastName = "",
+        string $campaign = "",
+        string $emailSubject = "",
+        string $message = "",
+        string $notes = "",
+        string $senderEmail = "",
+        string $senderFirstName = "",
+        string $senderLastName = "",
+        string $externalRefID = ""
     ): TangoCardResponse {
         $data = [
             'accountIdentifier' => $accountIdentifier,
