@@ -2,6 +2,8 @@
 
 namespace Integrateideas\TangoRaasApi;
 
+use Integrateideas\TangoRaasApi\TangoCardBase;
+
 /**
  *    The MIT License (MIT)
  *
