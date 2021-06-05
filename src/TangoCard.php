@@ -453,22 +453,22 @@ class TangoCard extends TangoCardBase
     /**
      * Create an Order under a specific Account.
      *
-     * @param $customerIdentifier
+     * @param string $customerIdentifier
      * @param string $accountIdentifier specify the account this order will be deducted from
-     * @param string $amount specify the face value of of the reward. Always required, including for fixed value items.
+     * @param int $amount specify the face value of of the reward. Always required, including for fixed value items.
      * @param string $utid the unique identifier for the reward you are sending as provided in the Get Catalog call
-     * @param string $sendEmail should Tango Card send the email to the recipient?
+     * @param bool $sendEmail should Tango Card send the email to the recipient?
      * @param string $recipientEmail recipient Email:required if sendEmail is true
      * @param string $recipientFirstName recipient first name: required if sendEmail is true (100 character max)
-     * @param null $recipientLastName recipient last name:always optional (100 character max)
-     * @param null $campaign optional campaign that may be used to administratively categorize a specific order or, if applicable, call a designated campaign email template.
-     * @param null $emailSubject Optional. If not specified, a default email subject will be used for the specified reward.
-     * @param null $message optional gift message
-     * @param null $notes Optional order notes (up to 150 characters)
-     * @param null $senderEmail sender's Email:always optional
-     * @param null $senderFirstName sender's first name: required if sendEmail is true (100 character max)
-     * @param null $senderLastName sender's last name:always optional (100 character max)
-     * @param null $externalRefID Optional. Idempotenent field that can be used for client-side order cross reference and prevent accidental order duplication. Will be returned in order response, order details, and order history.
+     * @param string $recipientLastName recipient last name:always optional (100 character max)
+     * @param string $campaign optional campaign that may be used to administratively categorize a specific order or, if applicable, call a designated campaign email template.
+     * @param string $emailSubject Optional. If not specified, a default email subject will be used for the specified reward.
+     * @param string $message optional gift message
+     * @param string $notes Optional order notes (up to 150 characters)
+     * @param string $senderEmail sender's Email:always optional
+     * @param string $senderFirstName sender's first name: required if sendEmail is true (100 character max)
+     * @param string $senderLastName sender's last name:always optional (100 character max)
+     * @param string $externalRefID Optional. Idempotenent field that can be used for client-side order cross reference and prevent accidental order duplication. Will be returned in order response, order details, and order history.
      *
      *
      * @return TangoCardResponse created order response
